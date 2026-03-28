@@ -24,8 +24,8 @@ public class SubmitOrderTest extends BaseTest {
 	
 	String productName="ZARA COAT 3";
 
-	@Test(dataProvider="getData", groups= {"Purchase"})
-	public void submitorder(String email, String pass, String productName) throws IOException, InterruptedException
+	@Test(dataProvider="getDataDirect", groups= {"Purchase"})
+	public void submitorder(String email, String pass, String prod) throws IOException, InterruptedException
 	{
 		
 	
@@ -35,10 +35,10 @@ public class SubmitOrderTest extends BaseTest {
 		
 		ProductCatalogue productcatalogue = landingpage.loginapplication(email, pass);		
 		List<WebElement> products = productcatalogue.getProductList();
-		productcatalogue.addProductToCart(productName);
+		productcatalogue.addProductToCart(prod);
 		
 		MyCartPage mycart=productcatalogue.goToCartPage(); 
-		Boolean match = mycart.verifyProductDisplay(productName);
+		Boolean match = mycart.verifyProductDisplay(prod);
 		Assert.assertTrue(match);
 		
  		//click on checkout button
@@ -97,6 +97,18 @@ public class SubmitOrderTest extends BaseTest {
 	@DataProvider
 	public Object[][] getData() throws IOException
 	{
+
+		
+		List<HashMap<String, String>> data = getJsonDataToMap(System.getProperty("user.dir")+"\\src\\test\\java\\rahulshetty\\data\\PurchaseOrder.json");
+		
+		return new Object[][] { {data.get(0)}, {data.get(1)} };
+		
+
+	}
+	
+	@DataProvider
+	public Object[][] getDataDirect(){
+		
 //		HashMap<String, String> map = new HashMap<>();
 //		map.put("email", "ekanthrajan@gmail.com");
 //		map.put("pass", "Password@123"); 
@@ -107,13 +119,11 @@ public class SubmitOrderTest extends BaseTest {
 //		map1.put("pass", "Password@123"); 
 //		map1.put("prod", "ADIDAS ORIGINAL");
 		
-		List<HashMap<String, String>> data = getJsonDataToMap(System.getProperty("user.dir")+"\\src\\test\\java\\rahulshetty\\data\\PurchaseOrder.json");
+		return new Object[][] { {"ekanthrajan@gmail.com", "Password@123", "ZARA COAT 3"}, 
+			{"ekanthautomation@gmail.com", "Password@123", "ADIDAS ORIGINAL"}
+			};
 		
-		return new Object[][] { {data.get(0)}, {data.get(1)} };
-		
-//		return new Object[][] { {"ekanthrajan@gmail.com", "Password@123", "ZARA COAT 3"}, 
-//								{"ekanthautomation@gmail.com", "Password@123", "ADIDAS ORIGINAL"}
-//								};
 	}
+
 
 }
