@@ -69,8 +69,8 @@ public class PlaceOrderPage extends AbstractComponent {
 	
 	public ConfirmationPage submitOrder()
 	{
+		waitForClickable(btnSubmit);
 		btnSubmit.click();
-		
 		ConfirmationPage confirmationmessage= new ConfirmationPage(driver);
 		
 		return confirmationmessage;

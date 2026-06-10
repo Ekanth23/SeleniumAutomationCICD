@@ -52,6 +52,11 @@ public class AbstractComponent {
 //		ww.until(ExpectedConditions.invisibilityOf(ele)); 
 	}
 	
+	public void waitForClickable(WebElement locator) {
+	    WebDriverWait ww= new WebDriverWait(driver, Duration.ofSeconds(10));
+	            ww.until(ExpectedConditions.elementToBeClickable(locator));
+	}
+	
 	public MyCartPage goToCartPage()
 	{
 		cartHeader.click();

@@ -54,6 +54,7 @@ public class MyCartPage extends AbstractComponent {
 	public PlaceOrderPage clickCheckoutButton()
 	{
 		
+		
 		btnCheckout.click();
 		
 		PlaceOrderPage placeorder = new PlaceOrderPage(driver); 
