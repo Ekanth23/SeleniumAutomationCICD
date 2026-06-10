@@ -1,16 +1,11 @@
 package rahulshetty.pageobjects;
 
-import java.util.List;
-
-import java.util.List;
-
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.testng.Assert;
 
 import rahulshetty.AbstractComponents.AbstractComponent;
 
@@ -70,6 +65,13 @@ public class PlaceOrderPage extends AbstractComponent {
 	public ConfirmationPage submitOrder()
 	{
 		waitForClickable(btnSubmit);
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+
+		String script =
+		"var e = document.elementFromPoint(943,650);" +
+		"return e.outerHTML;";
+
+		System.out.println(js.executeScript(script));
 		btnSubmit.click();
 		ConfirmationPage confirmationmessage= new ConfirmationPage(driver);
 		

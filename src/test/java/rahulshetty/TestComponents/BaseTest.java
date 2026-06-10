@@ -54,7 +54,7 @@ public class BaseTest {
 			options.addArguments("--no-sandbox");
 			
 		driver = new ChromeDriver(options); 
-		driver.manage().window().setSize(new Dimension(1440, 900)); //full screen
+		driver.manage().window().setSize(new Dimension(1920, 1080)); //full screen 1440, 900
 
 		} else if(browserName.equalsIgnoreCase("firefox"))
 		{
