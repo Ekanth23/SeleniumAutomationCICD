@@ -43,7 +43,7 @@ public class PlaceOrderPage extends AbstractComponent {
 	@FindBy(xpath = "(//section/button[contains(@class, 'ta-item')])[2]")
 	WebElement countryloc;
 	
-	@FindBy(css=".action__submit")
+	@FindBy(xpath="//a[contains(@class,'submit')]")
 	WebElement btnSubmit;
 	
 	By countryele = By.cssSelector("section button.list-group-item");
