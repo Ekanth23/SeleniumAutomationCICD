@@ -67,12 +67,15 @@ public class PlaceOrderPage extends AbstractComponent {
 		waitForClickable(btnSubmit);
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 
-		String script =
-		"var e = document.elementFromPoint(943,650);" +
-		"return e.outerHTML;";
+		 // Scroll element into view
+	    js.executeScript(
+	            "arguments[0].scrollIntoView({block:'center'});",
+	            btnSubmit);
 
-		System.out.println(js.executeScript(script));
-		btnSubmit.click();
+	    // Click using JavaScript
+	    js.executeScript(
+	            "arguments[0].click();",
+	            btnSubmit);
 		ConfirmationPage confirmationmessage= new ConfirmationPage(driver);
 		
 		return confirmationmessage;
