@@ -46,8 +46,12 @@ public class BaseTest {
 			ChromeOptions options = new ChromeOptions(); 
 			if(browserName.contains("headless"))
 			{
-				options.addArguments("headless");
+				options.addArguments("--headless=new");
 			}
+			
+			options.addArguments("--remote-allow-origins=*");
+			options.addArguments("--disable-dev-shm-usage");
+			options.addArguments("--no-sandbox");
 			
 		driver = new ChromeDriver(options); 
 		driver.manage().window().setSize(new Dimension(1440, 900)); //full screen
